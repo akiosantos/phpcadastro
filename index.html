@@ -8,14 +8,23 @@
 
 <body>
     <form name="Cadastro" action="PHPcadastro.php" method="POST">
+
         <h1>Formulário de Cadastro de Clientes</h1><br>
+
         <label>Código do Cliente: </label>
         <input type="text" name="cliente" id="cliente"><br>
+
+        <label>CPF: </label>
+        <input type="text" name="cpf" id="cpf"><br>
+
         <label>Nome do Cliente: </label>
         <input type="text" name="nome" id="nome"><br>
+
         <label>Sobrenome do Cliente:</label>
         <input type="text" name="sobrenome" id="sobrenome"><br>
+
         <label>Sexo: </label>
+
         <select id="sexo" name="sexo">
             <option value="M">Masculino</option>
             <option value="F">Feminino</option>
@@ -23,6 +32,7 @@
         </select><br><br>
 
         <label>Operação: </label>
+
         <select id="opera" name="opera">
             <option value="C">Consultar</option>
             <option value="I">Incluir</option>
@@ -30,8 +40,7 @@
             <option value="E">Excluir</option>
             <option value="N">Não Declarado</option>
         </select><br><br>
-        <input type="submit" name="cadastrsr" value="Cadastrar">
-
+        <input type="submit" name="cadastrar" value="Cadastrar">
     </form>
 </body>
 
