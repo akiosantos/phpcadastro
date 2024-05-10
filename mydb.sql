@@ -8,3 +8,8 @@ CREATE TABLE `mydb`.`cadastro` (
 `sexo` VARCHAR(20) NULL,
 PRIMARY KEY (`cliente`),
 UNIQUE INDEX `nome_UNIQUE` (`nome` ASC) VISIBLE);
+
+ALTER TABLE mydb.cadastro
+ADD COLUMN CPF VARCHAR(14);
+
+SELECT * FROM mydb.cadastro;
