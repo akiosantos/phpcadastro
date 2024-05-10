@@ -1,5 +1,6 @@
 <?php
 $tcliente = $_POST['cliente'];
+$tcpf = $_POST['cpf'];
 $tnome = $_POST['nome'];
 $tsobrenome = $_POST['sobrenome'];
 $tsexo = $_POST['sexo'];
@@ -19,7 +20,15 @@ $sql = "SELECT * FROM cadastro";
 $rest = $conn->query($sql);
 while($row = $rest->fetch_assoc())
 {
-echo "cliente: " . $row["cliente"]. " nome: " . $row["nome"]. " sobrenome:" . $row["sobrenome"]. " sexo:".$row["sexo"]. "<br>"."<br>";
+
+echo "cliente: " . $row["cliente"].
+"cpf: " . $row["cpf"].
+" nome: " . $row["nome"].
+" sobrenome:" .$row["sobrenome"].
+" sexo:".$row["sexo"]. 
+
+"<br>"."<br>";
+
 }
 echo "CONSULTA COM SUCESSO . $sql ." ;
 }
@@ -27,7 +36,7 @@ else
 if ($topera == "I")
 {
 // INCLUSÃO
-$sql = "INSERT INTO cadastro (cliente, nome, sobrenome, sexo) VALUES ('".$tcliente."','".$tnome."','".$tsobrenome."', '".$tsexo."')";
+$sql = "INSERT INTO cadastro (cliente, cpf, nome, sobrenome, sexo) VALUES ('".$tcliente."','".$tcpf."','".$tnome."','".$tsobrenome."', '".$tsexo."')";
 echo "INCLUSÃO COM SUCESSO . $sql ." ;
 }
 else
@@ -47,7 +56,7 @@ $sql = "DELETE FROM cadastro where cliente= '".$tcliente."'";
 echo "EXCLUSÃO COM SUCESSO . $sql " ;
 }
 else
-// OPERAÇÃO ICORRETA
+// OPERAÇÃO INCORRETA
 echo "OPERAÇÃO INCORRETA" ;
 }
 if ($conn->query($sql) ==! TRUE)
