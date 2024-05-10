@@ -44,7 +44,7 @@ else
 if ($topera == "A")
 {
 // ALTERAÇÃO
-$sql = "UPDATE cadastro SET nome = '".$tnome."', sobrenome = '".$tsobrenome."',sexo = '".$tsexo."' where cliente=
+$sql = "UPDATE cadastro SET nome = '".$tnome."', cpf = '".$tcpf."', sobrenome = '".$tsobrenome."',sexo = '".$tsexo."' where cliente=
 '".$tcliente."'";
 echo "ALTERAÇÃO COM SUCESSO . $sql ." ;
 }
