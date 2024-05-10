@@ -1,33 +1,57 @@
 <?php
-$tcliente = isset($_POST['cliente']) ? $_POST['cliente'] : 0;
-$tnome = isset($_POST['nome']) ? $_POST['nome'] : '';
-$tsobrenome = isset($_POST['sobrenome']) ? $_POST['sobrenome'] : '';
-$tsexo = isset($_POST['sexo']) ? $_POST['sexo'] : '';
-
+$tcliente = $_POST['cliente'];
+$tnome = $_POST['nome'];
+$tsobrenome = $_POST['sobrenome'];
+$tsexo = $_POST['sexo'];
+$topera = $_POST['opera'];
 $servername = "localhost:3306";
 $username = "root";
 $password = "usjt";
 $dbname = "mydb";
-
 // Conexão do Banco de Dados
 $conn = new mysqli($servername, $username, $password, $dbname);
 
-// Check connection
-if ($conn->connect_error) {
-die("Falha na conexao : " . $conn->connect_error);
+// Operação com Banco de Dados
+IF ($topera == "C")
+{
+// CONSULTA
+$sql = "SELECT * FROM cadastro";
+$rest = $conn->query($sql);
+while($row = $rest->fetch_assoc())
+{
+echo "cliente: " . $row["cliente"]. " nome: " . $row["nome"]. " sobrenome:" . $row["sobrenome"]. " sexo:".$row["sexo"]. "<br>"."<br>";
 }
-
-// Insert do Banco de Dados
-$sql = "INSERT INTO cadastro (cliente, nome, sobrenome, sexo) VALUES (?, ?, ?, ?)";
-$stmt = $conn->prepare($sql);
-$stmt->bind_param("ssss", $tcliente, $tnome, $tsobrenome, $tsexo);
-
-if ($stmt->execute()) {
-    echo "Inclusao com sucesso";
-} else {
-    echo "Falha na inclusao : " . $stmt->error;
+echo "CONSULTA COM SUCESSO . $sql ." ;
 }
+else
+if ($topera == "I")
+{
+// INCLUSÃO
+$sql = "INSERT INTO cadastro (cliente, nome, sobrenome, sexo) VALUES ('".$tcliente."','".$tnome."','".$tsobrenome."', '".$tsexo."')";
+echo "INCLUSÃO COM SUCESSO . $sql ." ;
+}
+else
 
-$stmt->close();
-$conn->close();
+if ($topera == "A")
+{
+// ALTERAÇÃO
+$sql = "UPDATE cadastro SET nome = '".$tnome."', sobrenome = '".$tsobrenome."',sexo = '".$tsexo."' where cliente=
+'".$tcliente."'";
+echo "ALTERAÇÃO COM SUCESSO . $sql ." ;
+}
+else{
+if ($topera == "E")
+{
+// EXCLUSÃO
+$sql = "DELETE FROM cadastro where cliente= '".$tcliente."'";
+echo "EXCLUSÃO COM SUCESSO . $sql " ;
+}
+else
+// OPERAÇÃO ICORRETA
+echo "OPERAÇÃO INCORRETA" ;
+}
+if ($conn->query($sql) ==! TRUE)
+{
+echo "Falha na inclusao : " . $sql . "<br>" . $conn->error;
+}
 ?>
